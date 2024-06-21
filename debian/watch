@@ -1,0 +1,4 @@
+# try also https://pypi.debian.net/sphinx-automodapi/watch
+version=3
+opts=uversionmangle=s/(rc|a|b|c)/~$1/ \
+https://pypi.debian.net/sphinx-automodapi/sphinx-automodapi-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
