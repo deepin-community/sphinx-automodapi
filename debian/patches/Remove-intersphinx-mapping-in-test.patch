@@ -1,0 +1,34 @@
+From: Ole Streicher <olebole@debian.org>
+Date: Fri, 7 Dec 2018 17:45:23 +0100
+Subject: Remove intersphinx mapping in test
+
+The mapping would cause internet access which fails during package
+build.
+
+We also disable sphinx failures on warnings: we don't need to be as
+picky as upstream here, as long as things work ;-)
+---
+ sphinx_automodapi/tests/test_cases.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/sphinx_automodapi/tests/test_cases.py b/sphinx_automodapi/tests/test_cases.py
+index 0ffa4c8..10812ff 100644
+--- a/sphinx_automodapi/tests/test_cases.py
++++ b/sphinx_automodapi/tests/test_cases.py
+@@ -24,7 +24,6 @@ PARALLEL = {False, True}
+ 
+ 
+ intersphinx_mapping = {
+-    'python': ('https://docs.python.org/3/', None)
+ }
+ 
+ DEFAULT_CONF = {'source_suffix': '.rst',
+@@ -91,7 +90,7 @@ def test_run_full_case(tmpdir, case_dir, parallel):
+             input_file = os.path.join(root, filename)
+             shutil.copy(input_file, root_dir)
+ 
+-    argv = ['-W', '-b', 'html', src_dir, '_build/html']
++    argv = ['-b', 'html', src_dir, '_build/html']
+     if parallel:
+         argv.insert(0, '-j 4')
+ 
